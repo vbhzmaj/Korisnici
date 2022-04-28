@@ -1,0 +1,34 @@
+﻿<Window x:Class="WpfUserAdmin.AddEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:model="clr-namespace:WpfUserAdmin.Model;assembly=WpfUserAdmin.Model"
+        xmlns:view_model="clr-namespace:WpfUserAdmin.ViewModel;assembly=WpfUserAdmin.ViewModel"
+        xmlns:local="clr-namespace:WpfUserAdmin"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding WindowTitle}" Height="300" Width="250" Loaded="Window_Loaded">
+    <Window.Resources>
+        <model:BoolConverter x:Key="BoolConverter"></model:BoolConverter>
+    </Window.Resources>
+    <Grid Margin="0,0,0,-10">
+        <StackPanel HorizontalAlignment="Left" Height="183" Margin="40,15,0,0" VerticalAlignment="Top" Width="164">
+            <Label x:Name="Label1"  Content="Username"/>
+            <TextBox Text="{Binding Path=CurrentUser.UserName}" x:Name="TextBoxAddUsername"  Height="27" TextWrapping="Wrap" />
+            <Label x:Name="Label2" Content="User Password"/>
+            <TextBox Text="{Binding CurrentUser.UserPass}" x:Name="TextBoxAddUserpass" Height="27" TextWrapping="Wrap" />
+            <Label x:Name="Label3" Content="IsAdmin"/>
+            <TextBox Text="{ Binding CurrentUser.IsAdmin, Converter={StaticResource BoolConverter},  ValidatesOnNotifyDataErrors=True}" x:Name="TextBoxAdmin" Height="27" TextWrapping="Wrap" />
+            <Label x:Name="Label4" Content="Type 1 for True, 0 for False;" Height="26"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="35,210,0,30" >
+
+            <Button Command="{Binding SaveCommand}" x:Name="BttnSave" Content="Save" Width="75" Margin="0,13,0,-6"/>
+            <Label x:Name="LabelBuffer" Content="    "/>
+            <Button x:Name="BttnCancel" Content="Cancel" Width="75" Margin="0,13,0,-8" Click="BttnCancel_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
